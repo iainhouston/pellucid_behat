@@ -1,0 +1,36 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+      base_url: http://dev.bradford-abbas.uk:8888
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drush:
+        alias: 'local'
+      drupal:
+        drupal_root: '/Users/iainhouston/Documents/web//Drupal-dev-sites/platform_ba'
+      region_map:
+        content: '.page-content'
+        content_top: '.region-content-top'
+        content_bottom: '.region-content-bottom'
+        search: '.region-search'
+        nav: '.region-nav'
+        front_one: '.cover'
+        front_two: '.features'
+        front_three: 'icons'
+        front_four: '.posts'
+        front_five: '.news'
+        front_six: '.region-front-six'
+        front_seven: '.region-front-seven'
+        front_eight: '.source'
+        footer: '.footer-main'

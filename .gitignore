@@ -1,0 +1,4 @@
+.DS_Store
+*~
+vendor/
+behat_project.sublime-workspace
