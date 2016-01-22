@@ -4,6 +4,6 @@
 	"guzzlehttp/guzzle" : "^6.0@dev"
     },
     "config": {
-	"bin-dir": "bin/"
+		"bin-dir": "bin/"
     }
 }
