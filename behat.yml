@@ -1,6 +1,9 @@
 default:
   suites:
     default:
+      filters:
+        # skip all steps with our @to-do tag
+        tags: ~@to-do
       contexts:
         - FeatureContext
         - Drupal\DrupalExtension\Context\DrupalContext
@@ -10,7 +13,8 @@ default:
   extensions:
     Behat\MinkExtension:
       goutte: ~
-      selenium2: ~
+      selenium2:
+        wd_host: http://localhost:8643/wd/hub
       base_url: http://dev.bradford-abbas.uk:8888
     Drupal\DrupalExtension:
       blackbox: ~
@@ -22,7 +26,7 @@ default:
       region_map:
         content: '.page-content'
         content_top: '.region-content-top'
-        content_bottom: '.region-content-bottom'
+        content_bottom: '#block-tools'
         search: '.region-search'
         nav: '.region-nav'
         front_one: '.cover'
@@ -34,3 +38,8 @@ default:
         front_seven: '.region-front-seven'
         front_eight: '.source'
         footer: '.footer-main'
+      selectors:
+        message_selector: '.messages'
+        error_message_selector: '.messages--error'
+        success_message_selector: '.messages--status'
+        warning_message_selector: '.messages--warning'
