@@ -14,7 +14,7 @@ Feature: Bradford Abbas Content Management for all users
     Then an email should be sent to "jo@example.com"
 
   @email
-  Scenario: Send an email when an Officer resets her password
+  Scenario: Send an email when an Officer uses the contact form
     Given I am logged in as an Officer
     When I visit "contact"
     And I fill in "edit-subject-0-value" with "It's a subject"
@@ -22,6 +22,6 @@ Feature: Bradford Abbas Content Management for all users
     And I press the "Send message" button
     # "You cannot send more than 5 messages in 1 hour. Try again later."
     Then  I should not see the error message containing "Try again later."
-    And I should see the success message containing "Your message has been sent"
+    And I should be on the homepage
     And an email should be sent
 

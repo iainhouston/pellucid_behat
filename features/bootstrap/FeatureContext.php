@@ -142,4 +142,11 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
         ->save();
     }
   }
+
+  /**
+   * @BeforeScenario @javascript
+   */
+  public function beforeBigWindow(BeforeScenarioScope $scope) {
+    $this->getSession()->resizeWindow(1440, 900, 'current');
+  }
 }

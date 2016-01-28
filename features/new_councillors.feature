@@ -7,15 +7,12 @@ and fill in the custom fields required by the Transparency Code
   @javascript @email
   Scenario: An Officer can create website users and fill in the custom fields required by the Transparency Code
     Given I am logged in as an Officer
-    # The toolbar across the top of the page after I log in is the "Admin menu" link
-    Then I should see the link "Admin menu"
-    When I click "Admin menu"
-    And I wait for AJAX to finish
-    # The toolbar item "People" is the "Manage user accounts, roles, and permissions." link
-    And I click "Manage user accounts, roles, and permissions."
+    Then I should see the link "Manage"
+    And I should see the link "People"
+    Given I click "People"
     Then I should not see "Access denied"
     And I should see the link "Add user"
-    When I click "Add user"
+    Given I click "Add user"
 
     # This describes what the Officer sees
     Then I should see the heading "Add user"
@@ -39,18 +36,16 @@ and fill in the custom fields required by the Transparency Code
     And I should see "Personal contact form"
     And I check the box "Personal contact form"
     When I press the "Create new account" button
+    And I wait for AJAX to finish
     Then I should see the success message containing "further instructions has been emailed to the new user"
     And an email should be sent to "jo@bloggs.com"
 
   @javascript
   Scenario: An Officer can cancel a user account
     Given I am logged in as an Officer
-    # The toolbar across the top of the page after I log in is the "Admin menu" link
-    Then I should see the link "Admin menu"
-    When I click "Admin menu"
-    And I wait for AJAX to finish
-    Then I should see the link "Manage user accounts, roles, and permissions."
-    When I click "Manage user accounts, roles, and permissions."
+    Then I should see the link "Manage"
+    And I should see the link "People"
+    Given I click "People"
     Then I should see "New Councillor"
     When I click "New Councillor"
     Then I see the heading "New Councillor"
@@ -69,11 +64,9 @@ and fill in the custom fields required by the Transparency Code
   @javascript
   Scenario: A deleted user should not be found on the "People" page
     Given I am logged in as an Officer
-    # The "Manage" menu item in the toolbar across the top of the page after I log in is also known as the "Admin menu" link
-    Then I should see the link "Admin menu"
-    When I click "Admin menu"
-    Then I should see the link "Manage user accounts, roles, and permissions."
-    When I click "Manage user accounts, roles, and permissions."
+    Then I should see the link "Manage"
+    And I should see the link "People"
+    Given I click "People"
     Then I should not see "New Councillor"
 
 #**
