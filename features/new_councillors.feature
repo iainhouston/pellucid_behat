@@ -1,10 +1,10 @@
-@api @email
-Feature: Bradford Abbas Content Management for Officers
+@api
+Feature: Bradford Abbas Content Management for Officers - Feature 1
 When I log into the website As an Officer
-I should be able to create website users with the Councillor role
+I should be able to create website users (with the Councillor role)**
 and fill in the custom fields required by the Transparency Code
 
-  @javascript
+  @javascript @email
   Scenario: An Officer can create website users and fill in the custom fields required by the Transparency Code
     Given I am logged in as an Officer
     # The toolbar across the top of the page after I log in is the "Admin menu" link
@@ -16,10 +16,13 @@ and fill in the custom fields required by the Transparency Code
     Then I should not see "Access denied"
     And I should see the link "Add user"
     When I click "Add user"
+
+    # This describes what the Officer sees
     Then I should see the heading "Add user"
     When I fill in "Email address" with "jo@bloggs.com"
     And I fill in "Username" with "New Councillor"
-      # Any old password will do; the new Councillor will be emailed to login and change their password
+      # Any old password will do at this stage;
+      # the new Councillor will be emailed instrucions to login and change their password
     And I fill in "Password" with "llkjhl-.A2"
     And I fill in "Confirm password" with "llkjhl-.A2"
     And I fill in "First and Last names" with "New Councillor"
@@ -57,10 +60,8 @@ and fill in the custom fields required by the Transparency Code
     When I press the "Cancel account" button
     Then I see the heading "Are you sure you want to cancel the account New Councillor?"
       # Use this default setting
-#    And the checkbox "Disable the account and keep its content." should be checked
-#    Then I select the radio button "Delete the account and make its content belong to the Anonymous user." with the id "edit-user-cancel-method-user-cancel-reassign"
-    Then I select the radio button "Delete the account and its content." with the id "edit-user-cancel-method-user-cancel-delete"
-    # The "Cancel account" button is also known as "edit-submit"
+    And the checkbox "Disable the account and keep its content." should be checked
+    Then I select the radio button "Delete the account and make its content belong to the Anonymous user." with the id "edit-user-cancel-method-user-cancel-reassign"
     When I press the "Cancel account" button
     And I wait for AJAX to finish
     Then I should see the success message containing "deleted"
@@ -68,9 +69,18 @@ and fill in the custom fields required by the Transparency Code
   @javascript
   Scenario: A deleted user should not be found on the "People" page
     Given I am logged in as an Officer
-    # The toolbar across the top of the page after I log in is the "Admin menu" link
+    # The "Manage" menu item in the toolbar across the top of the page after I log in is also known as the "Admin menu" link
     Then I should see the link "Admin menu"
     When I click "Admin menu"
     Then I should see the link "Manage user accounts, roles, and permissions."
     When I click "Manage user accounts, roles, and permissions."
     Then I should not see "New Councillor"
+
+#**
+# Revision from original intention:
+# Currently only an Administrator can create a new user with extra website permissions so having an Officer
+# create Councillor users is not possible without exposing extra User-management stuff not relevant to an Officer.
+# In any case, there are no cases yet that need any special Councillor privileges on the website, so we'll
+# remove the Councillor Role for now. Not to be confused with the Councillor taxonomy term used to tag Councillor
+# responsibilities on the Parish Council.)
+
